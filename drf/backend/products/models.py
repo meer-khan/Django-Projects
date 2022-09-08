@@ -3,12 +3,9 @@ from django.db import models
 # Create your models here.
 
 class Products(models.Model):
-    price = models.DecimalField(default=99.99 , max_digits=15 , decimal_places=2),
     title = models.CharField(max_length=120),
     content = models.TextField(blank=True , null= True),
     price = models.DecimalField(default=99.99 , max_digits=15 , decimal_places=2),
-    title = models.CharField(max_length=120),
-    content = models.TextField(blank=True , null= True),
 
 # class Dummy(models.Model):
 #     Name = models.CharField(max_length=255)
