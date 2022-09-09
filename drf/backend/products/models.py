@@ -1,17 +1,17 @@
 from django.db import models
-# from django.contrib.postgres.fields import ArrayField
+
 # Create your models here.
 
-class Products(models.Model):
-    title = models.CharField(max_length=120),
-    content = models.TextField(blank=True , null= True),
-    price = models.DecimalField(default=99.99 , max_digits=15 , decimal_places=2),
 
-# class Dummy(models.Model):
-#     Name = models.CharField(max_length=255)
-#     kgrams = ArrayField(models.CharField(max_length=255))
-#     cs = models.DecimalField(max_digits=225, decimal_places=0)
-#     hashlist = ArrayField(models.DecimalField(max_digits=225, decimal_places=0))
-#     class Meta:
-#         db_table = 'Dummy'
 
+
+class Dummy(models.Model):
+    # id = models.BigAutoField(primary_key=True)
+    name = models.CharField(db_column='Name', max_length=255)  # Field name made lowercase.
+    kgrams = models.TextField()  # This field type is a guess.# This field type is a guess.
+
+class Items(models.Model):
+    # kgrams = models.TextField()  
+    title = models.CharField(max_length=100)
+    desc = models.TextField()
+    price = models.DecimalField(decimal_places= 2 , default=9.99, max_digits=15)
