@@ -1,10 +1,10 @@
-# import requests
+import requests
 
 # endpoints = 'https://httpbin.org/anything'
-endpoints = 'http://localhost:8081/api/'
+endpoints = 'http://localhost:8080/api/'
 
-# getResponse = requests.get(endpoints ,params={'params':'Query Parameters'}, json={'Data' : 'Hello'})
-# print (getResponse.json())
+getResponse = requests.get(endpoints ,params={'params':'Query Parameters'}, json={'Data' : 'Hello'})
+print (getResponse.json())
 
 
 # getResponse = requests.get(endpoints , data= {'Data' : 'Hello2'})
@@ -21,16 +21,16 @@ endpoints = 'http://localhost:8081/api/'
 
 
 
-import re
-value=['[a,b,c]', '[d,e,f]']
-output = []
-for i in value:
-    charactersList = []
-    val = re.sub(",","",i[1:-1])
-    for j in val:
-        charactersList.append(j)
-    output.append(charactersList)
-print(output)
+# import re
+# value=['[a,b,c]', '[d,e,f]']
+# output = []
+# for i in value:
+#     charactersList = []
+#     val = re.sub(",","",i[1:-1])
+#     for j in val:
+#         charactersList.append(j)
+#     output.append(charactersList)
+# print(output)
 
 
 

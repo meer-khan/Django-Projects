@@ -3,9 +3,15 @@ from django.http import JsonResponse
 import json
 from typing import Any
 from products import models
+from django.forms.models import model_to_dict
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 
 # Create your views here.
 
+
+@api_view(["GET "])
 def api_home(request, *args, **kwargs):
 
 
@@ -45,10 +51,23 @@ def api_home(request, *args, **kwargs):
     # print(data)
 
 
-    model_data = models.Items.objects.all().order_by("?").first()
+# This line below get any random data from the Database and returns it back
+
+    # model_data = models.Items.objects.all().order_by("?").first()
+    # data = {}
+    # if model_data:
+    #     data['title'] = model_data.title
+    #     data['content'] = model_data.desc
+    #     data['price'] = model_data.price
+
+    
+
+    # Conversion of Django Model query response in the Python Dictionary using model_to_dict method of django 
     data = {}
+    model_data = models.Items.objects.all().order_by("?").first()
     if model_data:
-        data['title'] = model_data.title
-        data['content'] = model_data.desc
-        data['price'] = model_data.price
-    return JsonResponse(data)
+        data = model_to_dict(model_data)
+    # return JsonResponse(data)
+
+    # in the DRF we use Response method instead of JsonResponse
+    return Response(data)
