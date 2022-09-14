@@ -15,5 +15,5 @@ import pandas as pd
 nam = "Hello"
 
 str1 = rf'C:\Users\Hanzalah\Downloads\jan.csv\{nam}.zip'
-
+str2  = "OK"
 print(str1)
