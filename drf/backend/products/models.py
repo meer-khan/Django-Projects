@@ -15,3 +15,11 @@ class Items(models.Model):
     title = models.CharField(max_length=100)
     desc = models.TextField()
     price = models.DecimalField(decimal_places= 2 , default=9.99, max_digits=15)
+
+    @property
+    def sale_price(self):
+        return "%.2f" %(float(self.price)*0.8)
+
+    
+    def get_discount(self):
+        return "122"
