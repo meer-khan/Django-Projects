@@ -6,7 +6,8 @@ from products import models
 from django.forms.models import model_to_dict
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from products
+from products.models import Items
+from products.serializers import ItemsSerializer
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ def api_home(request, *args, **kwargs):
 
     # Added ok
     # we can get the query parameters using the line below 
-    print(request.GET)
+    print("GETTTTTTT",request.GET)
 
     # body = request.body
     # data = {}
@@ -60,18 +61,21 @@ def api_home(request, *args, **kwargs):
     #     data['content'] = model_data.desc
     #     data['price'] = model_data.price
 
-    if request.method != "GET": 
-        return Response({"Detail:":"POST is not allowed"}, status = 405)
+    # if request.method != "GET": 
+    #     return Response({"Detail:":"POST is not allowed"}, status = 405)
 
     # Conversion of Django Model query response in the Python Dictionary using model_to_dict method of django 
     data = {}
-    insatance = models.Items.objects.all().order_by("?").first()
-    if insatance:
-        pass
+    instance = models.Items.objects.all().order_by("?").first()
+    if instance:
+        
         # data = model_to_dict(model_data)
 
         # data = model_to_dict(model_data, fields=['id' , 'title','desc','price'])
 
+
+        data = ItemsSerializer(instance).data
+        print(data)
     # return JsonResponse(data)
 
     # in the DRF we use Response method instead of JsonResponse
