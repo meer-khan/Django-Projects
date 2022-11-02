@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import json
 from typing import Any
+# from drf.backend.products import serializers
 from products import models
 from django.forms.models import model_to_dict
 from rest_framework.response import Response
@@ -65,18 +66,32 @@ def api_home(request, *args, **kwargs):
     #     return Response({"Detail:":"POST is not allowed"}, status = 405)
 
     # Conversion of Django Model query response in the Python Dictionary using model_to_dict method of django 
-    data = {}
-    instance = models.Items.objects.all().order_by("?").first()
-    if instance:
+    # data = {}
+    # instance = models.Items.objects.all().order_by("?").first()
+    # if instance:
         
-        # data = model_to_dict(model_data)
+    #     # data = model_to_dict(model_data)
 
-        # data = model_to_dict(model_data, fields=['id' , 'title','desc','price'])
+    #     # data = model_to_dict(model_data, fields=['id' , 'title','desc','price'])
 
 
-        data = ItemsSerializer(instance).data
-        print(data)
-    # return JsonResponse(data)
+    #     data = ItemsSerializer(instance).data
+    #     print(data)
+    # return Response(data)
 
+
+
+    # We were getting data from the DB and then pass it to the item
+    # serlializer class and then serializer class does it's task 
+    # What if we get data from the API and then pass it to the 
+    # serializer and then dump the data into DB 
+
+
+
+    data = request.data
+    serializer = ItemsSerializer(data=data)
+    if serializer.is_valid():
+        instance = serializer.save()
     # in the DRF we use Response method instead of JsonResponse
+    print(serializer.data)
     return Response(data)

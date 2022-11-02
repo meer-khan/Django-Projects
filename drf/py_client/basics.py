@@ -3,8 +3,8 @@ import requests
 # endpoints = 'https://httpbin.org/anything'
 endpoints = 'http://localhost:8080/api/'
 
-getResponse = requests.get(endpoints ,params={'params':'Query Parameters'}, json={'Data' : 'Hello'})
-print (getResponse.json())
+getResponse = requests.get(endpoints ,params={'params':'Query Parameters'}, json={'title' : 'Hello'})
+print (getResponse)
 
 
 # getResponse = requests.get(endpoints , data= {'Data' : 'Hello2'})

@@ -19,4 +19,7 @@ class ItemsSerializer(serializers.ModelSerializer):
 # get_discount method of the Items
     def get_my_discount(self, obj):
         # print(type(obj))
-        return obj.get_discount()
+        try:
+            return obj.get_discount()
+        except:
+            return None
