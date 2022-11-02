@@ -18,6 +18,8 @@ def api_home(request, *args, **kwargs):
 
     # Added ok
     # we can get the query parameters using the line below 
+    # the line below weill return the QueryDict object and give us the 
+    # params passed in the API call
     print("GETTTTTTT",request.GET)
 
     # body = request.body
@@ -90,8 +92,17 @@ def api_home(request, *args, **kwargs):
 
     data = request.data
     serializer = ItemsSerializer(data=data)
+    # type of serializer in OrderedDict class instance/object
+    print(type(serializer))
+    # print(serializer.data)
+    # QueryData = models.Items.objects.all()
+    # print(len(QueryData))
+    # print(serializer.is_valid())
     if serializer.is_valid():
+        # print("False")
         instance = serializer.save()
+        print("This is after save", serializer)
+        print("Tye of after save serializer:" , type(serializer))
     # in the DRF we use Response method instead of JsonResponse
-    print(serializer.data)
-    return Response(data)
+        # print(serializer.data)
+        return Response(data)
