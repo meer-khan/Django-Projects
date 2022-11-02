@@ -13,14 +13,14 @@ from products.serializers import ItemsSerializer
 # Create your views here.
 
 
-@api_view(["GET"])
-def api_home(request, *args, **kwargs):
+# @api_view(["GET"])
+# def api_home(request, *args, **kwargs):
 
     # Added ok
     # we can get the query parameters using the line below 
     # the line below weill return the QueryDict object and give us the 
     # params passed in the API call
-    print("GETTTTTTT",request.GET)
+    # print("GETTTTTTT",request.GET)
 
     # body = request.body
     # data = {}
@@ -82,7 +82,7 @@ def api_home(request, *args, **kwargs):
     # return Response(data)
 
 
-
+ 
     # We were getting data from the DB and then pass it to the item
     # serlializer class and then serializer class does it's task 
     # What if we get data from the API and then pass it to the 
@@ -90,19 +90,28 @@ def api_home(request, *args, **kwargs):
 
 
 
-    data = request.data
-    serializer = ItemsSerializer(data=data)
-    # type of serializer in OrderedDict class instance/object
-    print(type(serializer))
-    # print(serializer.data)
-    # QueryData = models.Items.objects.all()
-    # print(len(QueryData))
-    # print(serializer.is_valid())
-    if serializer.is_valid():
-        # print("False")
-        instance = serializer.save()
-        print("This is after save", serializer)
-        print("Tye of after save serializer:" , type(serializer))
-    # in the DRF we use Response method instead of JsonResponse
-        # print(serializer.data)
-        return Response(data)
+    # data = request.data
+    # serializer = ItemsSerializer(data=data)
+    # # type of serializer in OrderedDict class instance/object
+    # print(type(serializer))
+    # # print(serializer.data)
+    # # QueryData = models.Items.objects.all()
+    # # print(len(QueryData))
+    # # print(serializer.is_valid())
+    # if serializer.is_valid(raise_exception=True):
+    #     # print("False")
+    #     instance = serializer.save()
+    #     print("This is after save", serializer)
+    #     print("Tye of after save serializer:" , type(serializer))
+    # # in the DRF we use Response method instead of JsonResponse
+    #     print(serializer.data) 
+    #     return Response(data)
+
+
+
+
+from rest_framework import generics
+from .models import ItemSerializer
+
+class ItemDetailAPIView(generics.RetrieveAPIView):
+    pass
