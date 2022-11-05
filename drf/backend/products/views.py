@@ -1,16 +1,28 @@
 # Create your views here.
 
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 from .models import Items
 from .serializers import ItemsSerializer
 
 
 
+class ItemListAPIView(generics.ListAPIView):
+    queryset = Items.objects.all()
+    print("Length of Query SET")
+    print(len(queryset))
+    serializer_class = ItemsSerializer
+
+
+product_list_view = ItemListAPIView.as_view()
+
 class ItemListCreateAPIView(generics.ListCreateAPIView):
     queryset = Items.objects.all()
     print("Length of Query SET")
     print(len(queryset))
-    serializer_classes = ItemsSerializer
+    serializer_class = ItemsSerializer
     
     
     def perform_create(self,serializer):
@@ -53,6 +65,35 @@ class ItemCreateAPIView(generics.CreateAPIView):
             print(content)
             serializer.save(desc=content)
 
-product_create_view = ItemCreateAPIView.as_view()
+# product_create_view = ItemCreateAPIView.as_view()
+
+
+
+@api_view(['GET', 'POST'])
+def product_alt_view(request, pk=None, *args, **kwargs):
+    method = request.method  
+
+    if method == "GET":
+        if pk is not None:
+            # detail view
+            obj = get_object_or_404(Items, pk=pk)
+            data = ItemsSerializer(obj, many=False).data
+            return Response(data)
+        # list view
+        queryset = Items.objects.all() 
+        data = ItemsSerializer(queryset, many=True).data
+        return Response(data)
+
+    if method == "POST":
+        # create an item
+        serializer = ItemsSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            title = serializer.validated_data.get('title')
+            content = serializer.validated_data.get('content') or None
+            if content is None:
+                content = title
+            serializer.save(content=content)
+            return Response(serializer.data)
+        return Response({"invalid": "not good data"}, status=400)
 
 
