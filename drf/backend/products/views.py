@@ -78,6 +78,7 @@ def product_alt_view(request, pk=None, *args, **kwargs):
             # detail view
             obj = get_object_or_404(Items, pk=pk)
             data = ItemsSerializer(obj, many=False).data
+            print(type(data))
             return Response(data)
         # list view
         queryset = Items.objects.all() 
@@ -87,12 +88,13 @@ def product_alt_view(request, pk=None, *args, **kwargs):
     if method == "POST":
         # create an item
         serializer = ItemsSerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid(raise_exception=True):
             title = serializer.validated_data.get('title')
-            content = serializer.validated_data.get('content') or None
+            content = serializer.validated_data.get('desc') or None
             if content is None:
                 content = title
-            serializer.save(content=content)
+            serializer.save(desc=content)
             return Response(serializer.data)
         return Response({"invalid": "not good data"}, status=400)
 
