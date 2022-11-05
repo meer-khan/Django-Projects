@@ -51,7 +51,7 @@ class ItemCreateAPIView(generics.CreateAPIView):
     queryset = Items.objects.all()
     print("Length of Query SET")
     print(len(queryset))
-    serializer_classes = ItemsSerializer
+    serializer_class = ItemsSerializer
     
     
     def perform_create(self,serializer):
@@ -86,8 +86,9 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
 
     def perform_update(self, serializer):
         instance = serializer.save()
-        if not instance.content:
-            instance.content = instance.title
+        print(instance.desc)
+        if not instance.desc:
+            instance.desc = instance.title
             ## 
 
 product_update_view = ProductUpdateAPIView.as_view()
