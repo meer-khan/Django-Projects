@@ -5,3 +5,8 @@ from django.http import HttpResponse
 
 def my_func(request):
     return HttpResponse("HELLO DJANGO")
+
+
+def my_func2(request):
+    var = "SHAHMEER KHAN"
+    return HttpResponse(f"HELLO {var}")
