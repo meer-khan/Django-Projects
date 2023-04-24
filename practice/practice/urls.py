@@ -20,5 +20,6 @@ from app1 import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("learnDJ/", views.my_func)
+    path("learnDJ/", views.my_func),
+    path("myName/", views.my_func2)
 ]
