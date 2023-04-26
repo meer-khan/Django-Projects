@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app1 import views as app1
 from app2 import views as app2
 # OR we can import direct function from the files
@@ -23,7 +23,9 @@ from app2 import views as app2
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", app1.index),
-    path("learnDJ/", app1.my_func),
-    path("myName/", app1.my_func2),
-    path("app2Hello", app2.app2_func)
+    path("app1/", include("app1.urls")),
+    path("app2/", include("app2.urls")),
+    # path("learnDJ/", app1.my_func),
+    # path("myName/", app1.my_func2),
+    # path("app2Hello", app2.app2_func)
 ]
