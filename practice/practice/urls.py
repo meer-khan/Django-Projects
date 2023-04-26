@@ -16,11 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app1 import views
+from app1 import views as app1
+from app2 import views as app2
+# OR we can import direct function from the files
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.index),
-    path("learnDJ/", views.my_func),
-    path("myName/", views.my_func2)
+    path("", app1.index),
+    path("learnDJ/", app1.my_func),
+    path("myName/", app1.my_func2),
+    path("app2Hello", app2.app2_func)
 ]
