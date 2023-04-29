@@ -4,6 +4,8 @@ from django.http import HttpResponse
 
 # Basic functional APIs
 # Create your views here.
+
+# first API
 def index(request): 
     return HttpResponse("Home Page")
 
