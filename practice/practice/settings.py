@@ -84,7 +84,7 @@ WSGI_APPLICATION = "practice.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'CrawlerMasterDB',
+        'NAME': 'TestDB',
         'USER': 'postgres',
         'PASSWORD': 'Pakistan2212',
         'HOST': 'localhost',
