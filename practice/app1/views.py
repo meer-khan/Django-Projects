@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from app1.models import *
 
 # Basic functional APIs
 # Create your views here.
@@ -14,5 +14,6 @@ def my_func(request):
 
 
 def my_func2(request):
-    var = "SHAHMEER KHAN"
-    return HttpResponse(f"HELLO {var}")
+    var = Student.objects.all()
+    print(list(var.values()))
+    return HttpResponse(f"HELLO {list(var.values())}")
