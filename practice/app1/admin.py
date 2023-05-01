@@ -12,7 +12,9 @@ from app1.models import Student
 # 3. Register ModelAdmin class with the Model class in admin.py
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display= ["student_name","student_address"]
+    # "id" is not mentioned in the Model class but we can use it becasue django creates id field in DB if we donot 
+    # specify any field as primary key.
+    list_display= ["id","student_name","student_address"]
 
 
 admin.site.register(Student,StudentAdmin)
