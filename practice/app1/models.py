@@ -18,3 +18,7 @@ class Student(models.Model):
 
     def __str__(self) -> str:
         return str(self.id)
+    
+    # we can also use f string formatting to concate two or more values in the admin panel using __str__ method 
+    def __str__(self): 
+        return f"ID is {self.id} {self.student_name} and {self.student_address}"
