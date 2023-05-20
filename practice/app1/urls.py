@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path("learnDJ/", views.my_func),
     path("myName/", views.my_func2),
+    path("registration/", views.show_forms_data)
 ]
