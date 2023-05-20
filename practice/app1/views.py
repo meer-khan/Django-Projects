@@ -23,8 +23,8 @@ def my_func2(request):
 
 def show_forms_data(request):
     # BY DEFAULT: auto_id attribute is "id_%s"
-    fm = StudentRegistration()
-    return render(request,'app1/userregistration.html', {"form":fm})
+    # fm = StudentRegistration()
+    # return render(request,'app1/userregistration.html', {"form":fm})
 
 
     #* CONFIGURE AUTO_ID
@@ -46,3 +46,18 @@ def show_forms_data(request):
     # # if auto_id set to anystring that does not include %s then form will act as auto_id is TRUE
     # fm = StudentRegistration(auto_id="ANYSTRING")
     # return render(request,'app1/userregistration.html', {"form":fm})
+
+
+    #* CONFIGURE LABEL TAG
+    # fm = StudentRegistration(label_suffix="-")
+    # return render(request,'app1/userregistration.html', {"form":fm})
+
+
+    #* CONFIGURE DYNAMIC INITIAL VALUES
+    # fm = StudentRegistration(label_suffix="-", auto_id="myID_%s", initial={"name":"MEER","email": "KHAN"})
+    # return render(request,'app1/userregistration.html', {"form":fm})
+
+
+    #* ORDERING OF INPUT FIELDS
+    fm = StudentRegistration(label_suffix="-", auto_id="myID_%s", initial={"name":"MEER","email": "KHAN"}, field_order=["email","name"])
+    return render(request,'app1/userregistration.html', {"form":fm})
