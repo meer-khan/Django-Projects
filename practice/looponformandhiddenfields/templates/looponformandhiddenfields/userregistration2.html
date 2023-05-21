@@ -9,9 +9,14 @@
 <body>
     <table>
         <form action="" method="get">
-            
-            {{form}}
+            {% for field in form%}
+            {{field.label}}
+            {%endfor%}
                   
+            <!-- IF WE DONOT USE FOR LOOP -->
+            {{form.name.label}}
+            {{form.email.label}}
+            {{form.mobile.label}}
         </form>
         
     </table>
