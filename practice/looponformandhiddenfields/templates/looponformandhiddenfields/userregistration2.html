@@ -7,16 +7,28 @@
     <title>User Registration</title>
 </head>
 <body>
+    <h1>Rendering Field names using for loop</h1>
     <table>
         <form action="" method="get">
             {% for field in form%}
-            {{field.label}}
+            {{field.label_tag}}
+            {% comment %} field will display the inputbox {% endcomment %}
+            {{field}}
             {%endfor%}
                   
             <!-- IF WE DONOT USE FOR LOOP -->
+            {% comment %} {{form.name.label}}
+            {{form.email.label}}
+            {{form.mobile.label}} {% endcomment %}
+            {% comment %} to show label with collon in front of label  {% endcomment %}
+            <hr>
+            <h1>Showing Fields Labels with colons and without colons</h1>
             {{form.name.label}}
             {{form.email.label}}
             {{form.mobile.label}}
+            {{form.name.label_tag}}
+            {{form.email.label_tag}}
+            {{form.mobile.label_tag}}
         </form>
         
     </table>
