@@ -29,7 +29,26 @@
             {{form.name.label_tag}}
             {{form.email.label_tag}}
             {{form.mobile.label_tag}}
+
+
+            <h1> Showing only visible fields</h1>
+            {% comment %} If we donot specify that show only visible fields, than django displays visibles fields as
+            well as hidden fields "label" {% endcomment %}
+            {% for field in form.visible_fields%}
+            {{field.label_tag}}
+            {{field}}
+            {%endfor%}
+
+
+            <hr> 
+            {% comment %} This is the actual way of writing hidden field in code but not showing on screen {% endcomment %}
+            <h1>not show hidden fields</h1>
+            {% for hidden in form.hidden_fields%}
+            {% comment %} {{hidden.label_tag}} {% endcomment %}
+            {{hidden}}
+            {%endfor%}
         </form>
+        
         
     </table>
     <input type="submit" value="submit">
