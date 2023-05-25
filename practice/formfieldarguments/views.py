@@ -5,4 +5,4 @@ from .forms import StudentRegistration
 def formfieldarguemts(request):
     fm = StudentRegistration()
     # return render(request,'app1/userregistration.html', {"form":fm})
-    return render(request, "looponformandhiddenfields/userregistration2.html", {"form":fm})
+    return render(request, "formfieldarguments/userregistration3.html", {"form":fm})
