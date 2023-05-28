@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "app1",
     "looponformandhiddenfields",
     "formfieldarguments",
+    "postform"
 ]
 
 MIDDLEWARE = [

@@ -12,9 +12,10 @@
     }
 </style>
 <body>
-    <h1>Form field arguments</h1>
+    <h1>Post request form</h1>
     <table>
-        <form action="" method="get">
+        <form action="" method="post">
+            {% csrf_token %}
             {{form.as_p}}
         </form>
         
