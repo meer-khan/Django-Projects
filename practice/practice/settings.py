@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "looponformandhiddenfields",
     "formfieldarguments",
     "postform", 
-    "validatingform"
+    "validatingform",
+    "redirecting",
 ]
 
 MIDDLEWARE = [
