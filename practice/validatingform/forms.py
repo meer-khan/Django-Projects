@@ -7,8 +7,9 @@ class StudentRegistration(forms.Form):
     # if we give inital values in both files, forms.py and views.py than what will happen? 
     # inital value of views.py will display on UI, because in views.py we are creating object of this class
     # and values given in the object has higher priority than given in class attributes
-    name = forms.CharField()
-    email = forms.EmailField(required=False)
+    Name = forms.CharField()
+    # email = forms.CharField(widget=forms.EmailField())
+    Email= forms.EmailField()
     # we can also remove PasswordInput() parenthesis, it will work fine like we did in below field of hiddenInput
 
 
