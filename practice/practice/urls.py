@@ -27,7 +27,8 @@ urlpatterns = [
     path("app2/", include("app2.urls")),
     path("formloop/", include("looponformandhiddenfields.urls")),
     path("formfield/",include("formfieldarguments.urls")),
-    path("postform/",include("postform.urls"))
+    path("postform/",include("postform.urls")),
+    path("vf/", include("validatingform.urls"))
 
     # path("learnDJ/", app1.my_func),
     # path("myName/", app1.my_func2),

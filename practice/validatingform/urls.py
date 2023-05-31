@@ -2,5 +2,5 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 urlpatterns = [
-    path("postform/", views.postform )
+    path("validatingform/", views.validatingform )
 ]
