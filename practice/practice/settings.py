@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "postform", 
     "validatingform",
     "redirecting",
+    "formfieldtypes10"
 ]
 
 MIDDLEWARE = [
