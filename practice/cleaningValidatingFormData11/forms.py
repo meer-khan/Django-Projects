@@ -22,7 +22,6 @@ class StudentRegistration(forms.Form):
         
         # * We can also do this using isalnum() is alpha numeric function 
         for char in valName:
-
             if not char.isalnum():
                 raise forms.ValidationError(f"Name can only contain letters, numbers, and spaces.you cannot add {char}")
 
