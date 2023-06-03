@@ -24,8 +24,16 @@ class StudentRegistration(forms.Form):
         for char in valName:
             if not char.isalnum():
                 raise forms.ValidationError(f"Name can only contain letters, numbers, and spaces.you cannot add {char}")
-
-
+            
+        return valName
+    def clean(self):
+        '''
+        This function is to validate the complete form
+        '''
+        valName = self.cleaned_data.get("name")
+        if valName < 4 : 
+            raise forms.ValidationError("Enter Name with more than 4 character and make sure there is no special character in it")
+        
         return valName
 
 
