@@ -30,6 +30,7 @@ class StudentRegistration(forms.Form):
         '''
         This function is to validate the complete form
         '''
+        cleaned_data = super().clean()
         valName = self.cleaned_data.get("name")
         if valName < 4 : 
             raise forms.ValidationError("Enter Name with more than 4 character and make sure there is no special character in it")
