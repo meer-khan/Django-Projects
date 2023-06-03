@@ -1,21 +1,32 @@
 from django import forms 
-
+import re
 class StudentRegistration(forms.Form):
 
     name = forms.CharField()
+    email = forms.EmailField(required=False)
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    def clean_name(self):
+        valName= self.cleaned_data["name"]
+        # OR we can also write it as 
+        # valName = self.cleaned_data.get("name")
+
+        if len(valName) < 4: 
+            raise forms.ValidationError("Enter more than 4 characters")
+        
+        # * Validatoin to check there is no special character in name using Regex
+        pattern = r'^[a-zA-Z0-9 ]+$'  # Regular expression pattern to allow only alphanumeric characters and spaces
+
+        # if not re.match(pattern, valName):
+        #     raise forms.ValidationError("Name can only contain letters, numbers, and spaces.")
+        
+        # * We can also do this using isalnum() is alpha numeric function 
+        for char in valName:
+
+            if not char.isalnum():
+                raise forms.ValidationError(f"Name can only contain letters, numbers, and spaces.you cannot add {char}")
 
 
-    # we can also remove PasswordInput() parenthesis, it will work fine like we did in below field of hiddenInput
+        return valName
 
 
-    # password = forms.CharField(widget=forms.PasswordInput())
-    # hiddenInput = forms.CharField(widget=forms.HiddenInput)
-    # textArea = forms.CharField(widget=forms.Textarea)
-    # checkbox = forms.CharField(widget=forms.CheckboxInput)
-    # fileInput = forms.CharField(widget=forms.FileInput())
-
-
-    # Attatching a custom attributes of HTML such as class with any field 
-
-
-    # email = forms.CharField(widget=forms.EmailInput(attrs={"class": "email", "id":"uniqueID"}))
