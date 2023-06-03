@@ -6,35 +6,42 @@ class StudentRegistration(forms.Form):
     email = forms.EmailField(required=False)
     password = forms.CharField(widget=forms.PasswordInput())
 
-    def clean_name(self):
-        valName= self.cleaned_data["name"]
-        # OR we can also write it as 
-        # valName = self.cleaned_data.get("name")
+    # def clean_name(self):
+    '''
+    This function is used to evaluate/validate the name field
+    '''
+    #     valName= self.cleaned_data["name"]
+    #     # OR we can also write it as 
+    #     # valName = self.cleaned_data.get("name")
 
-        if len(valName) < 4: 
-            raise forms.ValidationError("Enter more than 4 characters")
+    #     if len(valName) < 4: 
+    #         raise forms.ValidationError("Enter more than 4 characters")
         
-        # * Validatoin to check there is no special character in name using Regex
-        pattern = r'^[a-zA-Z0-9 ]+$'  # Regular expression pattern to allow only alphanumeric characters and spaces
+    #     # * Validatoin to check there is no special character in name using Regex
+    #     pattern = r'^[a-zA-Z0-9 ]+$'  # Regular expression pattern to allow only alphanumeric characters and spaces
 
-        # if not re.match(pattern, valName):
-        #     raise forms.ValidationError("Name can only contain letters, numbers, and spaces.")
+    #     # if not re.match(pattern, valName):
+    #     #     raise forms.ValidationError("Name can only contain letters, numbers, and spaces.")
         
-        # * We can also do this using isalnum() is alpha numeric function 
-        for char in valName:
-            if not char.isalnum():
-                raise forms.ValidationError(f"Name can only contain letters, numbers, and spaces.you cannot add {char}")
+    #     # * We can also do this using isalnum() is alpha numeric function 
+    #     for char in valName:
+    #         if not char.isalnum():
+    #             raise forms.ValidationError(f"Name can only contain letters, numbers, and spaces.you cannot add {char}")
             
-        return valName
+        # return valName
     def clean(self):
         '''
         This function is to validate the complete form
         '''
-        cleaned_data = super().clean()
-        valName = self.cleaned_data.get("name")
-        if valName < 4 : 
+        # cleaned_data = super().clean()
+        valName = self.cleaned_data["name"]
+        valEmail = self.cleaned_data.get("email")
+
+        if len(valName) < 4 : 
             raise forms.ValidationError("Enter Name with more than 4 character and make sure there is no special character in it")
         
-        return valName
+        if len(valEmail)< 10 :
+            raise forms.ValidationError("Email should not include less than 10 characters")
+        # return valName
 
 
