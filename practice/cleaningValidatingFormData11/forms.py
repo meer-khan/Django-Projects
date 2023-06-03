@@ -1,10 +1,37 @@
 from django import forms 
 import re
+from django.core import validators
+
+
+
+
+def phone_num_starts_with_92(phno):
+    '''
+    This function is a custom validator
+    '''
+    # if phno[0] != '+':
+    #     raise forms.ValidationError("Number should start from +")
+    if not phno.startswith("+92"):
+        raise forms.ValidationError("Number should start from +92")
+
+    
+
 class StudentRegistration(forms.Form):
 
     name = forms.CharField()
     email = forms.EmailField(required=False)
     password = forms.CharField(widget=forms.PasswordInput())
+
+    
+    # * Writing Builtin validators: 
+    '''
+    CUSTOM VALIDATION FIELDS
+    '''
+    fullName = forms.CharField(validators=[validators.MaxLengthValidator(20), 
+                                           validators.MinLengthValidator(5),
+                                            ])
+    
+    pho_no = forms.CharField(validators=[phone_num_starts_with_92])
 
     # def clean_name(self):
     '''
@@ -36,6 +63,7 @@ class StudentRegistration(forms.Form):
         # cleaned_data = super().clean()
         valName = self.cleaned_data["name"]
         valEmail = self.cleaned_data.get("email")
+        valNo = self.cleaned_data["ph_no"]
 
         if len(valName) < 4 : 
             raise forms.ValidationError("Enter Name with more than 4 character and make sure there is no special character in it")
@@ -43,5 +71,6 @@ class StudentRegistration(forms.Form):
         if len(valEmail)< 10 :
             raise forms.ValidationError("Email should not include less than 10 characters")
         # return valName
+
 
 
