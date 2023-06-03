@@ -14,13 +14,14 @@
 <body>
     <h1>Cleanning And Validating Form Data</h1>
     <table>
-        <form action="" method="post">
+        <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
+            <input type="submit" value="submit">
         </form>
         
         
     </table>
-    <input type="submit" value="submit">
+    
 </body>
 </html>
