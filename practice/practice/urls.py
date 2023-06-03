@@ -30,7 +30,8 @@ urlpatterns = [
     path("postform/",include("postform.urls")),
     path("vf/", include("validatingform.urls")),
     path("redi/", include("redirecting.urls")),
-    path('10/',include("formfieldtypes10.urls"))
+    path('10/',include("formfieldtypes10.urls")),
+    path('11/',include("cleaningValidatingFormData11.urls"))
 
     # path("learnDJ/", app1.my_func),
     # path("myName/", app1.my_func2),
