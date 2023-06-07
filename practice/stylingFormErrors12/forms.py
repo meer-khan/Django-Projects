@@ -30,8 +30,8 @@ class StudentRegistration(forms.Form):
     # '''
     # CUSTOM VALIDATION FIELDS
     # '''
-    # fullName = forms.CharField(validators=[validators.MaxLengthValidator(20), 
-    #                                        validators.MinLengthValidator(5),])
+    fullName = forms.CharField(validators=[validators.MaxLengthValidator(20), 
+                                           validators.MinLengthValidator(5),])
     
     # pho_no = forms.CharField(validators=[phone_num_starts_with_92])
 
