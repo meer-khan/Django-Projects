@@ -21,7 +21,7 @@ class StudentRegistration(forms.Form):
     # If Name field is empty than "Enter Your Name" error will pop up
     name = forms.CharField(error_messages={"required":"Enter Your Name"}, min_length=5,max_length=50)
     email = forms.EmailField(error_messages={"required":"Enter Your Email"})
-    # password = forms.CharField(widget=forms.PasswordInput(),error_messages={"required":"Enter Your Password"})
+    password = forms.CharField(widget=forms.PasswordInput(),error_messages={"required":"Enter Your Password"})
     # # We are creating this field to reenter password and makes sure, both password match by using 
     # # the clean() function, in clean function we write custom logic to check both passwords are same or not
     # repassword = forms.CharField(widget=forms.PasswordInput(), label="Confirm Password")
