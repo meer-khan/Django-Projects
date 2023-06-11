@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "redirecting",
     "formfieldtypes10",
     "cleaningValidatingFormData11",
-    "stylingFormErrors12"
+    "stylingFormErrors12",
+    "modelForms13"
 ]
 
 MIDDLEWARE = [
