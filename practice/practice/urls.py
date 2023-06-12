@@ -33,7 +33,8 @@ urlpatterns = [
     path('10/',include("formfieldtypes10.urls")),
     path('11/',include("cleaningValidatingFormData11.urls")),
     path('12/',include("stylingFormErrors12.urls")),
-    path("13/", include("modelForms13.urls"))
+    path("13/", include("modelForms13.urls")),
+    path("14/", include("dynamicURL14.urls"))
 
     # path("learnDJ/", app1.my_func),
     # path("myName/", app1.my_func2),

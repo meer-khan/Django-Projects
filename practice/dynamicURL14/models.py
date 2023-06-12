@@ -17,4 +17,4 @@ class User(models.Model):
     # ! First approach does not work, Bard is SHITTTTT!!!!!
 
     class Meta:
-        db_table = "user_registration"
+        db_table = "user_registration2"

@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "formfieldtypes10",
     "cleaningValidatingFormData11",
     "stylingFormErrors12",
-    "modelForms13"
+    "modelForms13",
+    "dynamicURL14"
 ]
 
 MIDDLEWARE = [
