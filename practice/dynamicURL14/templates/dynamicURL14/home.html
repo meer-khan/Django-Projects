@@ -10,9 +10,17 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <h2>This is Home Template</h2>
+
+        <a href= "{% url 'userDetails' 1  %}">Student 1</a> 
+        <a href= "{% url 'userDetails' 2  %}">Student 2</a> 
+        <a href= "{% url 'userDetails' 3  %}">Student 3</a> 
+
+
+        <a href= "{% url 'subDetails' 1  5%}">Sub Student 1</a> 
+        <a href= "{% url 'subDetails' 2  6%}">Sub Student 2</a> 
+        <a href= "{% url 'subDetails' 3  7%}">Sub Student 3</a> 
+
         
         <script src="" async defer></script>
     </body>
