@@ -3,7 +3,7 @@ from .forms import StudentRegistration
 from .models import User
 # Create your views here.
 
-def modelForms(request):
+def dynamicURL(request):
     if request.method == "POST":
 
         fm = StudentRegistration(request.POST)
@@ -22,4 +22,4 @@ def modelForms(request):
     else:
         fm = StudentRegistration()
 
-    return render(request, "modelForms13/userregistration13.html", {"form":fm})
+    return render(request, "dynamicURL14/userregistration14.html", {"form":fm})

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<style>
+    .helptext{
+        color:red;
+    }
+    .errorlist{
+        list-style-type:none;
+        color:red;
+        font-size:15px;
+        margin:0
+        padding:0
+    }
+</style>
+<body>
+    <h1>Model Forms</h1>
+    <table>
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+            {% comment %} Rearranging Fields and Error Messages from top to right side of field {% endcomment %}
+            {{form.non_field_errors}}
+            {% for field in form %}
+                <div>
+                    {% comment %} we used striptags tag to remove auto generated ul tag that forces error messages 
+                    to be placed beneth the field, and NOW, ul tag is removed and there is no class that 
+                    we can target for styling, so we added span tag to add a class for styling{% endcomment %}
+                    <br>
+                    {{field.label_tag}} {{field}} <span class="errorlist">{{field.errors|striptags}}</span>
+                </div>
+            {%endfor %}
+            <br>
+            <input type="submit" value="submit">
+        </form>
+        
+        
+    </table>
+    
+</body>
+</html>
