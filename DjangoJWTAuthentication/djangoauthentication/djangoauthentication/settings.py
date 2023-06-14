@@ -117,7 +117,9 @@ REST_FRAMEWORK = {
     
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    # This line to show the response of API in browser in JSON Format, not in the default Django Format
+    # 'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)
     
 }
 
