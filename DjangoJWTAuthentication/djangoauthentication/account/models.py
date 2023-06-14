@@ -15,6 +15,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             name=name,
+            tc = tc
         )
 
         user.set_password(password)
@@ -29,7 +30,8 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
-            date_of_birth=date_of_birth,
+            name=name, 
+            tc=tc
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -51,7 +53,7 @@ class User(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # objects = MyUserManager()
+    objects = UserManager()
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["name","tc"]
