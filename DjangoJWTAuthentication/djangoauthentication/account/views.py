@@ -6,4 +6,5 @@ from rest_framework.views import APIView
 
 
 class UserRegistrationView(APIView):
-    pass
+    def post(self,request,format=None):
+        return Response({'msg':"Registration Successful"})
