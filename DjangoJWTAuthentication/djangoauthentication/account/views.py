@@ -4,24 +4,29 @@ from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import UserRegistrationSerializer, UserLoginSerializer
 from django.contrib.auth import authenticate
+from .renderers import UserRenderer
 # Create your views here.
 
 
 class UserRegistrationView(APIView):
+    renderer_classes = [UserRenderer]
     def post(self,request,format=None):
         serializer = UserRegistrationSerializer(data=request.data)
 
         # if we want to check that there's "ErrorDetails" key in every error we need to remove the argument of raise_exception 
         # from the is_valid() parenthesis
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid():
             user=serializer.save()
             return Response({'msg':"Registration Successful"},status=status.HTTP_201_CREATED)
+        print(serializer.errors)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
 
 
 
 class UserLoginView(APIView):
+    renderer_classes = [UserRenderer]
+
     def post(self,request,format=None):
         serializer = UserLoginSerializer(data = request.data)
         if serializer.is_valid(raise_exception = True):

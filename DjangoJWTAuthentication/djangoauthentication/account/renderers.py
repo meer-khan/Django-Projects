@@ -2,7 +2,7 @@ from rest_framework import renderers
 import json
 
 
-class UserRendered(renderers.JSONRenderer):
+class UserRenderer(renderers.JSONRenderer):
     charset = 'utf-8'
     def render(self,data,accepted_media_type=None,renderer_context=None):
         response = ''
@@ -10,4 +10,4 @@ class UserRendered(renderers.JSONRenderer):
             response = json.dumps({'errors':data})
         else:
             response = json.dumps(data)
-        return super().render(data,accepted_media_type,renderer_context)
+        return response
