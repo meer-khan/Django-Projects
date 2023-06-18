@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate
 class UserRegistrationView(APIView):
     def post(self,request,format=None):
         serializer = UserRegistrationSerializer(data=request.data)
+
+        # if we want to check that there's "ErrorDetails" key in every error we need to remove the argument of raise_exception 
+        # from the is_valid() parenthesis
         if serializer.is_valid(raise_exception=True):
             user=serializer.save()
             return Response({'msg':"Registration Successful"},status=status.HTTP_201_CREATED)
