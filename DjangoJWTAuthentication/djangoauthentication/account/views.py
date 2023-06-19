@@ -28,13 +28,18 @@ class UserRegistrationView(APIView):
 
         # if we want to check that there's "ErrorDetails" key in every error we need to remove the argument of raise_exception 
         # from the is_valid() parenthesis
-        if serializer.is_valid():
-            user=serializer.save()
-            token = get_tokens_for_user(user)
-            return Response({'token':token,'msg':"Registration Successful"},status=status.HTTP_201_CREATED)
-        print(serializer.errors)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    
+        # if serializer.is_valid():
+        #     user=serializer.save()
+        #     token = get_tokens_for_user(user)
+        #     return Response({'token':token,'msg':"Registration Successful"},status=status.HTTP_201_CREATED)
+        # print(serializer.errors)
+        # return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        token = get_tokens_for_user(user)
+        return Response({'token':token, 'msg':'Registration Successful'}, status=status.HTTP_201_CREATED)
+
+
 
 
 
