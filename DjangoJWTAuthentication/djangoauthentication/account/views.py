@@ -24,20 +24,21 @@ def get_tokens_for_user(user):
 class UserRegistrationView(APIView):
     renderer_classes = [UserRenderer]
     def post(self,request,format=None):
+        print(request.data)
         serializer = UserRegistrationSerializer(data=request.data)
-
+        print("Serializer : ", serializer)
         # if we want to check that there's "ErrorDetails" key in every error we need to remove the argument of raise_exception 
         # from the is_valid() parenthesis
-        # if serializer.is_valid():
-        #     user=serializer.save()
-        #     token = get_tokens_for_user(user)
-        #     return Response({'token':token,'msg':"Registration Successful"},status=status.HTTP_201_CREATED)
-        # print(serializer.errors)
-        # return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        token = get_tokens_for_user(user)
-        return Response({'token':token, 'msg':'Registration Successful'}, status=status.HTTP_201_CREATED)
+        if serializer.is_valid():
+            user=serializer.save()
+            token = get_tokens_for_user(user)
+            return Response({'token':token,'msg':"Registration Successful"},status=status.HTTP_201_CREATED)
+        print(serializer.errors)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        # serializer.is_valid(raise_exception=True)
+        # user = serializer.save()
+        # token = get_tokens_for_user(user)
+        # return Response({'token':token, 'msg':'Registration Successful'}, status=status.HTTP_201_CREATED)
 
 
 
@@ -58,7 +59,7 @@ class UserLoginView(APIView):
 
                 return Response({"token":token,'msg':'Login Success'}, status = status.HTTP_200_OK)
             else: 
-                return Response({'errors': {'non_field_erros': ['Email or Password is not Valid']}}, status=status.HTTP_404_NOT_FOUND)
+                return Response({'errors': {'non_field_errors': ['Email or Password is not Valid']}}, status=status.HTTP_404_NOT_FOUND)
         
         return Response(serializer.erros,status = status.HTTP_400_BAD_REQUEST)
     
