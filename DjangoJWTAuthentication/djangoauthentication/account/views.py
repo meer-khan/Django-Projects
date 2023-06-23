@@ -69,9 +69,10 @@ class UserProfileView(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
     def get(self,request,format=None):
-        print(request.user)
+        
         serializer = UserProfileSerializer(request.user)
         # if serializer.is_valid():
+        print("In Profile View: ",request.user)
         return Response(serializer.data,status = status.HTTP_200_OK)
     
 
