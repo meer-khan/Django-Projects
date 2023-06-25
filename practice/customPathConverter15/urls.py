@@ -6,8 +6,10 @@
 
 
 from django.contrib import admin
-from django.urls import path
-from . import views
+from django.urls import path, register_converter
+from . import views , converters
+
+
 urlpatterns = [
     path("cdurl/", views.customDynamicURL ),
     path('/', views.show_details, name ="subdetails")
