@@ -11,6 +11,6 @@ def customDynamicURL(request):
     return HttpResponse("Hello in APP-2")
 
 
-def show_details(request,my_id):
-    student= {'id':my_id}
-    return render(request,'enroll/show.html', student)
+def show_details(request,year):
+    student= {'yr':year}
+    return render(request,'customPathConverter15/show.html', student)
