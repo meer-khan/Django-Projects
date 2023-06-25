@@ -9,3 +9,8 @@ from django.http import HttpResponse
 def customDynamicURL(request):
     # def app2_func(request):
     return HttpResponse("Hello in APP-2")
+
+
+def show_details(request,my_id):
+    student= {'id':my_id}
+    return render(request,'enroll/show.html', student)
