@@ -15,10 +15,13 @@ def add_show(request):
 
             fm.save()
 
+        # Showing blank form after User submits the data: 
+            fm = StudentRegistration()
     else: 
         fm = StudentRegistration()
+    stud = User.objects.all()
 
-    return render(request, 'enroll/addandshow.html', {'form':fm})
+    return render(request, 'enroll/addandshow.html', {'form':fm, 'stu':stud})
 
 
 
