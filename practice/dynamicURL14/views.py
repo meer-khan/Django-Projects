@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import StudentRegistration
-from .models import User
+# from .models import User
 # Create your views here.
 
 def dynamicURL(request,id):
