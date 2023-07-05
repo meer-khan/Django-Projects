@@ -20,7 +20,18 @@
     </head>
     <body>
         {% block content %}
-        <h4>Add Student</h4>
+        <div class="row">
+
+            <div class="col-sm-4">
+
+                <h4 class="text-center alert alert-info">Add Student</h4>
+
+                <form action="" method="POST" class="">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type = 'submit' class = "btn btn-success" value="Add">
+                </form>
+        </div>
         {% endblock content %}
         
         <script src="" async defer></script>
