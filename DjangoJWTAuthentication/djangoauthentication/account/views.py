@@ -103,7 +103,31 @@ class UserPasswordResetView(APIView):
         if serializer.is_valid(raise_exception=True):
             return Response({'msg':'Password Reset Successfully'}, status = status.HTTP_200_OK)
         return Response(serializer.erros,status = status.HTTP_400_BAD_REQUEST)
+    
+
+
+
+
+
+
+class FileUploadRequest(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+    def get(self,request,format=None):
+        serializer = UserProfileSerializer(request.user)
+        if serializer.is_valid(raise_exception=True):
+            print("In Profile View: ",request.user)
+            return Response(serializer.data,status = status.HTTP_200_OK)
         
+
+class UserBOMResults(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+    def get(self,request,format=None):
+        serializer = UserProfileSerializer(request.user)
+        if serializer.is_valid(raise_exception=True):
+            print("In Profile View: ",request.user)
+            return Response(serializer.data,status = status.HTTP_200_OK)
 
     
     
