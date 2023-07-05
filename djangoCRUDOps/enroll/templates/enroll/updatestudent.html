@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends 'enroll/base.html' %}
 
 {% load static %}
 
@@ -20,10 +21,27 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
         
+        {% block content%}
+        {% comment %} <h4>{{id}}</h4> {% endcomment %}
+
+        <div class='row'>
+            <div class='col-sm-8 offset-2'>
+                <h4 class='alert alert-info'></h4>
+
+                <form action='' method='post'>
+                {%csrf_token%}
+                    {{form.as_p}}
+
+                    <input type='submit' value="Update" class= ' btn btn-md btn-primary'>
+                    <a href="{% url 'addnshow' %} " class= 'btn btn-success'> Back To Home</a>
+                </form>
+
+
+            </div>
+        </div>
+
+        {% endblock %}
         <script src="" async defer></script>
     </body>
 </html>

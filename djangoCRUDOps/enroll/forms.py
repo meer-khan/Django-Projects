@@ -14,7 +14,9 @@ class StudentRegistration(forms.ModelForm):
         widgets = {
             "name": forms.TextInput(attrs = {'class':'form-control' }),
             "email": forms.EmailInput(attrs = {'class':'form-control' }),
-            "password": forms.PasswordInput(attrs = {'class':'form-control' })
+            # render_value = True will return the value of password when we are going on the edit page if we disable it, then 
+            # django will not return us password but return us all other fields
+            "password": forms.PasswordInput(attrs = {'class':'form-control' }, render_value=True)
 
 
         }

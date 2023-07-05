@@ -61,7 +61,7 @@
                                     <td>{{st.email}}</td>
                                     <td>{{st.password}}</td>
                                     <td>
-                                        <a href="" class='btn btn-sm btn-primary'>Edit</a>
+                                        <a href="{% url 'update' st.id %}" class='btn btn-sm btn-primary'>Edit</a>
                                         {% comment %} <a href="" class='btn btn-sm btn-danger'>Delete</a> {% endcomment %}
 
                                         <form action= "{% url 'delete' st.id %}" method="POST" class='d-inline'>

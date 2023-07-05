@@ -64,3 +64,23 @@ def delete_data(request,id):
         record.delete()
 
     return HttpResponseRedirect('/')
+
+
+
+def update_data(request,id):
+    # if fm.is_valid():
+    #     pass
+    if request.method == "POST": 
+        record = User.objects.get(pk=id)
+        fm = StudentRegistration(request.POST, instance=record)
+        # record.delete()
+        if fm.is_valid():
+            fm.save()
+
+    else: 
+        record = User.objects.get(pk=id)
+        fm = StudentRegistration(instance=record)
+
+        
+
+    return render(request, 'enroll/updatestudent.html', {"form":fm})
