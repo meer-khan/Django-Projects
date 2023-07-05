@@ -6,6 +6,8 @@ def add_show(request):
     if request.method == "POST": 
         fm = StudentRegistration(request.POST)
         print(fm)
+        if fm.is_valid(): 
+            fm.save()
 
     else: 
         fm = StudentRegistration()
