@@ -1,6 +1,12 @@
-from .views import student_detail
+# from .views import *
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
-    path("studentinfo/",view=student_detail)
+    # URL 1 -- POSTMAN
+    path("studentinfo/",view=views.student_detail),
+
+    # URL 2 -- POSTMAN
+    path("studentlist/",view=views.student_list)
+
 ]

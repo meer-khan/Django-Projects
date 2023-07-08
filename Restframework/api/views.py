@@ -15,3 +15,15 @@ def student_detail(request):
     print(jsonData)
     print(type(jsonData))
     return HttpResponse(jsonData)
+
+
+# Serialization and Json conversion of QuerySet
+def student_list(request):
+    stu = Student.objects.all()
+    # print(type(stu))
+    serializer = StudentSerializer(stu, many=True)
+    print(type(serializer.data))
+    jsonData = JSONRenderer().render(serializer.data)
+    print(jsonData)
+    print(type(jsonData))
+    return HttpResponse(jsonData)
