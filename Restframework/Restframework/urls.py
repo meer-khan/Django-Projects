@@ -21,6 +21,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("serialization.urls")),
     path("api/deserialization/", include("deserialization.urls")),
-    path("api/3/",include("validations3.urls"))
+    path("api3/",include("validations3.urls"))
 
 ]
