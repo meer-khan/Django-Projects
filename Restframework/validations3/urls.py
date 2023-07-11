@@ -7,6 +7,7 @@ urlpatterns = [
     path("studentinfo/",view=views.student_detail),
 
     # URL 2 -- POSTMAN
-    path("studentlist/",view=views.student_list)
+    path("studentlist/",view=views.student_list), 
+    path("validataion/", view = views.StudentAPI.as_view())
 
 ]
