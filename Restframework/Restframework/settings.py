@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "serialization",
     "deserialization",
-    "validations3"
+    "validations3",
+    "ModelSerializer4"
 ]
 
 MIDDLEWARE = [
