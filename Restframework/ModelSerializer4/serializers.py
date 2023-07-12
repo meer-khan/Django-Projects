@@ -23,7 +23,7 @@ class StudentSerializer(serializers.ModelSerializer):
     # Let's start to perform some validations
     # We want to make a field read only- which means it cannot be updated 
     # We can do it like below 
-    # but what if we want to make more field read_only, you can refer to line 31 and 32 for second method
+    # but what if we want to make more field read_only, you can refer to line 35 and 39 for second method
 
     # *READ ONLY METHOD 1
     name = serializers.CharField(read_only=True)
