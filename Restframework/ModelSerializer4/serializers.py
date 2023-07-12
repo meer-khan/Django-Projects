@@ -2,49 +2,41 @@ from rest_framework import serializers
 from serialization.models import Student
 
 
-def city_validation(data):
-    if data == 'MBDIN':
-        raise serializers.ValidationError("no city available")
-    return data
-class StudentSerializer(serializers.Serializer):
-    # id = serializers.IntegerField()
-    name = serializers.CharField(max_length=100)
-    roll = serializers.IntegerField()
-    city = serializers.CharField(max_length=100, validators = [city_validation])
 
-    def create(self,validated_data):
-        return Student.objects.create(**validated_data)
+
+# * If we want to create a custome validator function we can create it outside the class 
+# intiate a field outside meta class on which we want to apply this validation function 
+# pass this function into validators argument of that field
+# Check code line of 18 in this file where we pass custom validator function
+def custom_validator(value):
+    # Perform custom validation logic
+    if value < 0:
+        raise serializers.ValidationError("Value must be greater than or equal to zero.")
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    # my_field = serializers.IntegerField(validators=[custom_validator])
     
-    def update(self,instance,validated_data):
-        print(instance.name)
-        instance.name = validated_data.get('name',instance.name)
-        print(instance.name)
-        instance.roll = validated_data.get('roll',instance.roll)
-        instance.city = validated_data.get('city',instance.city)
-
-        instance.save()
-        return instance
+    # we get create method, update method in Model Serializer that's why people use ModelSerializers
+    class Meta: 
+        model = Student
+        fields = ['name','roll','city']
 
 
+        # * include all fields
+        # fields = '__all__'
 
-    # FIRST DJNAGO WILL EXECUTE FIELD LEVEL VALIDATORS AND THEN OBJECT LEVEL VALIDATIONS
+        # * exclude one field
+        # exclude = ['roll']
 
 
-    # Field Level Validation
-    def validate_roll(self,value):
-        if value >= 200:
-            raise serializers.ValidationError('Seats Full')
-        return value
-    
 
-    # Object Level Validation
-    def validate(self,data):
-        name = data.get('name')
-        city = data.get('city')
-        if data.get('roll') == 200:
-            raise serializers.ValidationError("Ohh bhai kia kar raha hai tu?")
-        if name.lower() == "kashif" and city != "MBDIN":
-            raise serializers.ValidationError(f"Ohoo {name} should be from MBDIN")
-        
-        return data
+
+
+
+
+
+
+
+
 
