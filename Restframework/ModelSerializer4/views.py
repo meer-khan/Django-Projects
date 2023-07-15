@@ -17,19 +17,19 @@ class StudentAPI(View):
 
     def get(self, request, *args, **kwargs): 
         # jsonData = request.data
-        try:
-            jsonData = json.loads(request.body)
-            id = jsonData.get("id")
-            if id is not None:
-                stu = Student.objects.get(id=id)
-                serializer = StudentSerializer(stu)
+        # try:
+        jsonData = json.loads(request.body)
+        id = jsonData.get("id",None)
+        if id is not None:
+            stu = Student.objects.get(id=id)
+            serializer = StudentSerializer(stu)
 
-                return JsonResponse(serializer.data, safe=False)
-        except:
-        
-            stu = Student.objects.all()
-            serializer = StudentSerializer(stu,many=True)
             return JsonResponse(serializer.data, safe=False)
+    # except:
+    
+        stu = Student.objects.all()
+        serializer = StudentSerializer(stu,many=True)
+        return JsonResponse(serializer.data, safe=False)
         
     def post(self,request,*args, **kwargs):
         jsonData = json.loads(request.body)
