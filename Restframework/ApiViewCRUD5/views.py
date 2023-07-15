@@ -3,9 +3,21 @@ from serialization.models import Student
 from .serializers import StudentSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 # Create your views here.
 
 
+# * STATUS CODES
+# HTTP_200_OK
+# HTTP_201_CREATED
+# HTTP_202_ACCEPTED
+# HTTP_203_NON_AUTHORITATIVE_INFORMATION
+# HTTP_204_NO_CONTENT
+# HTTP_205_RESET_CONTENT
+# HTTP_206_PARTIAL_CONTENT
+# HTTP_207_MULTI_STATUS
+# HTTP_208_ALREADY_REPORTED
+# HTTP_226_IM_USED
 
 # * To make it a browseable api we need to do some changes, 
 # we need to give a parameter of id into the function 
@@ -19,15 +31,19 @@ from rest_framework.response import Response
 @api_view(["GET","POST","PUT","DELETE"])
 def student_api(request,id=None):
     if request.method == "GET":
-        # id = request.data.get("id",None)
-        id = id
-        if id is not None: 
-            stu = Student.objects.get(id=id)
-            serializer = StudentSerializer(stu)
-            return Response(serializer.data)
-        stu = Student.objects.all()
-        serializer = StudentSerializer(stu,many=True)
-        return Response(serializer.data)
+        try:
+            if id is not None:
+                stu = Student.objects.get(id=id)
+                serializer = StudentSerializer(stu)
+                return Response(serializer.data)
+            else:
+                stu = Student.objects.all()
+                serializer = StudentSerializer(stu, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+        except Student.DoesNotExist:
+            return Response(
+                {"error": "Student with the provided ID does not exist."},
+                status=status.HTTP_404_NOT_FOUND,)
     
     elif request.method == "POST": 
             serializer = StudentSerializer(data = request.data)
