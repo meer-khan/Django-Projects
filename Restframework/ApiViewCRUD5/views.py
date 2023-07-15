@@ -11,7 +11,10 @@ from rest_framework.response import Response
 # we need to give a parameter of id into the function 
 # add another url where url can accept an integer as id 
 # change code, and donot get id through request.data.get("id") function but directly from the function parameter
-# We need  to add PATCH and PUT functions seperately
+
+# *NOT NECESSARY REQUIREMET
+# We can add PATCH and PUT functions seperately
+# In Path method we will set partial True for serializer and in PUT method we donot
 
 @api_view(["GET","POST","PUT","DELETE"])
 def student_api(request,id=None):
