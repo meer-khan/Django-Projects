@@ -29,6 +29,19 @@ def student_api(request):
     elif request.method == "PUT":
         id = request.data.get("id")
         stu = Student.objects.get(id=id)
+        serializer = StudentSerializer(instance=stu,data = request.data,partial=True )
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg':"Record Updated Successfully"})
+        return Response(serializer.errors)
+    
+    elif request.method == "DELETE":
+        id = request.data.get("id")
+        stu = Student.objects.get(id=id)
+        stu.delete()
+        return Response({'msg':"Record deleted"})
+
+
         
          
 
