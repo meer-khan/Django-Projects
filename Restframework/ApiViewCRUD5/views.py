@@ -68,3 +68,63 @@ def student_api(request,id=None):
         stu = Student.objects.get(id=id)
         stu.delete()
         return Response({'msg':"Record deleted"})
+
+
+
+
+
+
+
+
+# * Creating a class based view using APIView:
+from rest_framework.views import APIView
+
+class StudentAPI(APIView):
+    def get(self,request,id=None, format=None):
+        try:
+            if id is not None:
+                stu = Student.objects.get(id=id)
+                serializer = StudentSerializer(stu)
+                return Response(serializer.data)
+            else:
+                stu = Student.objects.all()
+                serializer = StudentSerializer(stu, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+        except Student.DoesNotExist:
+            return Response(
+                {"error": "Student with the provided ID does not exist."},
+                status=status.HTTP_404_NOT_FOUND,)
+        
+    
+    def post(self,request, format=None):
+        serializer = StudentSerializer(data = request.data)
+        if serializer.is_valid():
+                serializer.save()
+                return Response({'msg':"Record Created Successfully"})
+        return Response(serializer.errors)
+    
+
+    def put(self,request,id,format=None):
+        id = id
+        stu = Student.objects.get(id=id)
+        serializer = StudentSerializer(instance=stu,data = request.data )
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg':"Record Updated Successfully"})
+        return Response(serializer.errors)
+    
+
+    def patch(self,request,id,format=None):
+        id = id
+        stu = Student.objects.get(id=id)
+        serializer = StudentSerializer(instance=stu,data = request.data,partial=True )
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg':"Record Updated Successfully"})
+        return Response(serializer.errors)
+    
+    def delete(self,request,id,format=None):
+        id = request.data.get("id")
+        stu = Student.objects.get(id=id)
+        stu.delete()
+        return Response({'msg':"Record deleted"})
