@@ -7,10 +7,17 @@ from rest_framework.response import Response
 
 
 
+# * To make it a browseable api we need to do some changes, 
+# we need to give a parameter of id into the function 
+# add another url where url can accept an integer as id 
+# change code, and donot get id through request.data.get("id") function but directly from the function parameter
+# We need  to add PATCH and PUT functions seperately
+
 @api_view(["GET","POST","PUT","DELETE"])
-def student_api(request):
+def student_api(request,id=None):
     if request.method == "GET":
-        id = request.data.get("id",None)
+        # id = request.data.get("id",None)
+        id = id
         if id is not None: 
             stu = Student.objects.get(id=id)
             serializer = StudentSerializer(stu)
@@ -27,7 +34,9 @@ def student_api(request):
             return Response(serializer.errors)
     
     elif request.method == "PUT":
-        id = request.data.get("id")
+        # id = request.data.get("id")
+
+        id = id
         stu = Student.objects.get(id=id)
         serializer = StudentSerializer(instance=stu,data = request.data,partial=True )
         if serializer.is_valid():
@@ -40,93 +49,3 @@ def student_api(request):
         stu = Student.objects.get(id=id)
         stu.delete()
         return Response({'msg':"Record deleted"})
-
-
-        
-         
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @method_decorator(csrf_exempt,name="dispatch")
-# class StudentAPI(View):
-
-#     def get(self, request, *args, **kwargs): 
-#         # jsonData = request.data
-#         try:
-#             jsonData = json.loads(request.body)
-#             id = jsonData.get("id")
-#             if id is not None:
-#                 stu = Student.objects.get(id=id)
-#                 serializer = StudentSerializer(stu)
-
-#                 return JsonResponse(serializer.data, safe=False)
-#         except:
-        
-#             stu = Student.objects.all()
-#             serializer = StudentSerializer(stu,many=True)
-#             return JsonResponse(serializer.data, safe=False)
-        
-#     def post(self,request,*args, **kwargs):
-#         jsonData = json.loads(request.body)
-#         serializer = StudentSerializer(data = jsonData)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse({'msg':"Record Added successfully"})
-        
-#         return JsonResponse(serializer.errors)
-
-#     def put(self,request,*args, **kwargs):
-#         try:
-#             jsonData = json.loads(request.body)
-#             id = jsonData.get("id")
-#             stu = Student.objects.get(pk=id)
-#             serializer = StudentSerializer(stu,data = jsonData,partial = True)
-#             if serializer.is_valid(): 
-#                 serializer.save()
-#                 return JsonResponse({'msg':"record Updated"})
-        
-#             return JsonResponse(serializer.errors)
-#         except Exception as e:
-#             return JsonResponse({'msg':"An Error Occurred", 'error': str(e)}, status= 500)
-
-    
-#     def delete(self,request,*args, **kwargs):
-#         try:
-#             jsonData = json.loads(request.body)
-#             id = jsonData.get("id")
-#             stu = Student.objects.get(pk=id)
-#             stu.delete()
-#             return JsonResponse({'msg': 'Record deleted successfully'})
-#         except Student.DoesNotExist:
-#             return JsonResponse({'msg': 'Record not found'}, status=404)
-#         except Exception as e:
-#             return JsonResponse({'msg': 'An error occurred', 'error': str(e)}, status=500)
-
-
