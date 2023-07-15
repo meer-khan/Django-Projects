@@ -18,6 +18,20 @@ def student_api(request):
         stu = Student.objects.all()
         serializer = StudentSerializer(stu,many=True)
         return Response(serializer.data)
+    
+    elif request.method == "POST": 
+            serializer = StudentSerializer(data = request.data)
+            if serializer.is_valid():
+                 serializer.save()
+                 return Response({'msg':"Record Created Successfully"})
+            return Response(serializer.errors)
+    
+    elif request.method == "PUT":
+        id = request.data.get("id")
+        stu = Student.objects.get(id=id)
+        
+         
+
 
 
         
