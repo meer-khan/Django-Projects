@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "deserialization",
     "validations3",
     "ModelSerializer4",
-    "ApiViewCRUD5"
+    "ApiViewCRUD5",
+    "GenericAPIandMixin6"
 ]
 
 MIDDLEWARE = [
