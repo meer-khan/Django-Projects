@@ -14,7 +14,7 @@ urlpatterns = [
     # StudentRetrieve Function only works on 'pk' parameter
     # path("GenericAPIandMixin/<int:pk>", views.StudentRetrieve.as_view()),
     # path("GenericAPIandMixin/<int:pk>", views.StudentUpdate.as_view()),
-    path("GenericAPIandMixin/<int:pk>", views.StudentDestroy.as_view()),
+    # path("GenericAPIandMixin/<int:pk>", views.StudentDestroy.as_view()),
 
 
     # LIST AND CREATE URL 
@@ -22,6 +22,7 @@ urlpatterns = [
     path("GenericAPIandMixin/", view = views.LCStudentAPI.as_view()),
 
     # * NEW GROUP 2
+    path("GenericAPIandMixin/<int:pk>", view = views.RUPStudentAPI.as_view()),
 
 
 ]
