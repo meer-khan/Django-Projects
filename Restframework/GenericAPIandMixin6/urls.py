@@ -7,10 +7,6 @@ urlpatterns = [
     path("GenericAPIandMixin/", view = views.StudentCreate.as_view()),
     # path("GenericAPIandMixin/", view = views.StudentList.as_view()),
 
-    # path("GenericAPIandMixin/<int:id>", views.StudentAPI.as_view()),
-
-
-    
-
-
+    # StudentRetrieve Function only works on 'pk' parameter
+    path("GenericAPIandMixin/<int:pk>", views.StudentRetrieve.as_view()),
 ]
