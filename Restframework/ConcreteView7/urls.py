@@ -4,8 +4,7 @@ from . import views
 
 urlpatterns = [
 
-    # * NEW GROUP 1
-    path("ConcreteView/", view = views.LCStudentAPI.as_view()),
+    path("ConcreteView/", view = views.StudentList.as_view()),
 
 
 ]
