@@ -2,7 +2,9 @@ from serialization.models import Student
 from .serializers import StudentSerializer
 from rest_framework.generics import (ListAPIView, CreateAPIView, 
                                      RetrieveAPIView, UpdateAPIView, 
-                                     DestroyAPIView, ListCreateAPIView)
+                                     DestroyAPIView, ListCreateAPIView,
+                                     RetrieveUpdateAPIView,
+                                     RetrieveUpdateDestroyAPIView)
 # Create your views here.
 
 class StudentList(ListAPIView):
@@ -30,7 +32,15 @@ class StudentDestroy(DestroyAPIView):
   serializer_class = StudentSerializer
 
 
-class StudentListCreate(ListCreateAPIView):
+class StudentRetrieveUpdate(RetrieveUpdateAPIView):
   queryset = Student.objects.all()
   serializer_class = StudentSerializer
+
+
+class StudentRetrieveUpdate(RetrieveUpdateAPIView):
+  queryset = Student.objects.all()
+  serializer_class = StudentSerializer
+
+
+
 
