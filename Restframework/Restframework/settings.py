@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "ModelSerializer4",
     "ApiViewCRUD5",
     "GenericAPIandMixin6",
-    "ConcreteView7"
+    "ConcreteView7",
+    "ViewSet8"
 ]
 
 MIDDLEWARE = [
