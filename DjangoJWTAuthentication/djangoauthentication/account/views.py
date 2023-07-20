@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate
 from .renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from .models import BlackListedTokens
 
 # Create your views here.
 
@@ -72,6 +73,18 @@ class UserProfileView(APIView):
         
         serializer = UserProfileSerializer(request.user)
         # if serializer.is_valid():
+
+        # CHECKING BLACKLISTED TOKEN
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+        if auth_header.startswith('Bearer '):
+            token = auth_header[len('Bearer '):]
+            print("Token in Profile :", token)
+            print(BlackListedTokens.objects.filter(token=token).exists())
+        if BlackListedTokens.objects.filter(token=token).exists():
+            return Response({'error':"Token has expired"},status = status.HTTP_400_BAD_REQUEST)
+
+
+
         print("In Profile View: ",request.user)
         return Response(serializer.data,status = status.HTTP_200_OK)
     
@@ -79,9 +92,29 @@ class UserProfileView(APIView):
 class UserChangePasswordView(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
-    def post(self,request,format=None):
+    def put(self,request,format=None):
+        print(request.data)
         serializer = UserChangePasswordSerializer(data = request.data, context = {'user':request.user})
         if serializer.is_valid(raise_exception = True):
+
+
+            # *Blacklisting the token
+
+            auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+            if auth_header.startswith('Bearer '):
+                token = auth_header[len('Bearer '):]
+            # Now you have the token and can use it as needed
+            # For example, you can pass it to your custom authentication class
+            # for token verification or blacklisting
+            # Do whatever you need to do with the token
+                print("Token:", token)
+
+            blacklisted_token = BlackListedTokens(token=token)
+            blacklisted_token.save()
+
+
+
+
             return Response({'msg':'Password Changed Successfully'},status = status.HTTP_200_OK)
         return Response(serializer.erros,status = status.HTTP_400_BAD_REQUEST)
         
@@ -91,6 +124,7 @@ class SendPasswordResetEmailView(APIView):
     def post(self,request,format=None):
         serializer = SendPasswordResetEmailSerializer(data = request.data)
         if serializer.is_valid(raise_exception=True):
+
             return Response({'msg':'Password Reset link send. Please check your Email'}, status = status.HTTP_200_OK) 
         return Response(serializer.erros,status = status.HTTP_400_BAD_REQUEST)
     
