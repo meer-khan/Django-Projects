@@ -47,3 +47,11 @@ class StudentViewSet(viewsets.ViewSet):
           serializer.save()
           return Response({"msg":"Record Updated"},status= status.HTTP_202_ACCEPTED)
         return Response(serializer.errors,status= status.HTTP_400_BAD_REQUEST)
+      
+
+    def destroy(self,request,pk):
+      if pk is not None:
+        stu = Student.objects.get(pk=pk)
+        stu.delete()
+        return Response({"msg":"Record Updated"},status=status.HTTP_204_NO_CONTENT)
+      return Response({"error":"No Record Found"},status= status.HTTP_400_BAD_REQUEST)
