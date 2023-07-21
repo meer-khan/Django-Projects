@@ -32,7 +32,18 @@ class StudentViewSet(viewsets.ViewSet):
       # id = pk 
       if pk is not None:
         stu = Student.objects.get(pk=pk)
-        serializer = StudentSerializer(stu)
+        serializer = StudentSerializer(instance = stu, data = request.data)
         if serializer.is_valid():
           serializer.save()
-          return Response({"msg":"Record Updated"})
+          return Response({"msg":"Record Updated"},status= status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors,status= status.HTTP_400_BAD_REQUEST)
+      
+    def partial_update(self,request,pk):
+      if pk is not None:
+        stu = Student.objects.get(pk=pk)
+        serializer = StudentSerializer(instance = stu, 
+                                       data = request.data, partial=True)
+        if serializer.is_valid():
+          serializer.save()
+          return Response({"msg":"Record Updated"},status= status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors,status= status.HTTP_400_BAD_REQUEST)
