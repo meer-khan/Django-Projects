@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "GenericAPIandMixin6",
     "ConcreteView7",
     "ViewSet8",
-    "ModelViewSet9"
+    "ModelViewSet9",
+    "BasicAuthenticationAndPermissions10"
 ]
 
 MIDDLEWARE = [
