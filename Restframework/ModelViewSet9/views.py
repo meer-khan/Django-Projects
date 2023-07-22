@@ -6,17 +6,19 @@ from rest_framework.response import Response
 
 # Create your views here.
 
-class StudentViewSet(viewsets.ModelViewSet):
-    def list(self,request):
-      # Attributes given by viewsets
-      print("************LIST**************")
-      print("Basename: ", self.basename)
-      print("Action: ", self.action)
-      print("Detail: ", self.detail)
-      print("Suffix: ", self.suffix)
-      print("Name: ", self.name)
-      print("Description: ", self.description)
 
-      stu = Student.objects.all()
-      serializer = StudentSerializer(stu,many=True)
+# Model View set provides 6 apis, 
+# List, Retrieve, Create, Update, Partial Update, Delete
+# Just by writing 2 lines of code and define the router we can utilize the complete CRUD
+class StudentViewSet(viewsets.ModelViewSet):
+  queryset = Student.objects.all()
+  serializer_class = StudentSerializer
+
+
+
+
+# ReadOnlyModelViewSet Provides list and retrieve functionalities only
+class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
+  queryset = Student.objects.all()
+  serializer_class = StudentSerializer
       
