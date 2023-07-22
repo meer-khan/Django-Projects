@@ -27,7 +27,7 @@ urlpatterns = [
     path('api6/',include("GenericAPIandMixin6.urls")),
     path('api7/',include("ConcreteView7.urls")),
     path("api8/", include("ViewSet8.urls")),
-    path("api9/", include("ModelViewSet.urls"))
+    path("api9/", include("ModelViewSet9.urls"))
 
 
 ]
