@@ -2,8 +2,8 @@ from serialization.models import Student
 from .serializers import StudentSerializer
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-
-
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
@@ -13,12 +13,9 @@ from rest_framework.response import Response
 class StudentViewSet(viewsets.ModelViewSet):
   queryset = Student.objects.all()
   serializer_class = StudentSerializer
+  authentication_classes = [BasicAuthentication]
+  permission_classes = [IsAuthenticated]
 
-
-
-
-# ReadOnlyModelViewSet Provides list and retrieve functionalities only
-class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
-  queryset = Student.objects.all()
-  serializer_class = StudentSerializer
-      
+  # non Staff users cannot access the admin panel 
+  # BasicAuthentication class is used to authenticate the user using email/username and password
+  # IsAuthenticated is used to give access to any type of user, either it's a staff, nonstaff, normal user or super user. 
