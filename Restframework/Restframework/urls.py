@@ -25,7 +25,10 @@ urlpatterns = [
     path("api4/", include("ModelSerializer4.urls")),
     path("api5/", include("ApiViewCRUD5.urls")),
     path('api6/',include("GenericAPIandMixin6.urls")),
-    path('api7/',include("ConcreteView7.urls"))
+    path('api7/',include("ConcreteView7.urls")),
+    path("api8/", include("ViewSet8.urls")),
+    path("api9/", include("ModelViewSet9.urls")),
+    path("api10/", include("BasicAuthenticationAndPermissions10.urls"))
 
 
 ]
