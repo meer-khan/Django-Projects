@@ -28,7 +28,8 @@ urlpatterns = [
     path('api7/',include("ConcreteView7.urls")),
     path("api8/", include("ViewSet8.urls")),
     path("api9/", include("ModelViewSet9.urls")),
-    path("api10/", include("BasicAuthenticationAndPermissions10.urls"))
+    path("api10/", include("BasicAuthenticationAndPermissions10.urls")),
+    path("api11/", include("SessionAuthentication11.urls"))
 
 
 ]

@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "ConcreteView7",
     "ViewSet8",
     "ModelViewSet9",
-    "BasicAuthenticationAndPermissions10"
+    "BasicAuthenticationAndPermissions10",
+    "SessionAuthentication11"
 ]
 
 MIDDLEWARE = [
