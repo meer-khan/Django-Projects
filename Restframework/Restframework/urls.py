@@ -30,6 +30,7 @@ urlpatterns = [
     path("api9/", include("ModelViewSet9.urls")),
     path("api10/", include("BasicAuthenticationAndPermissions10.urls")),
     path("api11/", include("SessionAuthentication11.urls")),
+    path("api12/", include("CustomPermission12.urls")),
 
     
 
