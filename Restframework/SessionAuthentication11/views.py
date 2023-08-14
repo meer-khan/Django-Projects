@@ -2,7 +2,7 @@ from serialization.models import Student
 from .serializers import StudentSerializer
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework.authentication import BasicAuthentication, SessionAuthentication
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly
 # Create your views here.
 
