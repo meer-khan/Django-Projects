@@ -2,7 +2,7 @@ from serialization.models import Student
 from .serializers import StudentSerializer
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework.authentication import BasicAuthentication
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly
 # Create your views here.
 
@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, I
 class StudentViewSet(viewsets.ModelViewSet):
   queryset = Student.objects.all()
   serializer_class = StudentSerializer
-  authentication_classes = [BasicAuthentication]
+  authentication_classes = [SessionAuthentication]
   # permission_classes = [IsAuthenticated, AllowAny]
   # permission_classes = [IsAdminUser] # this is only accessible by the user who are staff "is staff true"
   permission_classes = [IsAuthenticatedOrReadOnly]
