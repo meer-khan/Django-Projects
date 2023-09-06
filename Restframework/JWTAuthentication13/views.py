@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import (IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly, 
                                         DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly)
-from .custompermissions import MyPermission
+from rest_framework_simplejwt.authentication import JWTAuthentication
 # Create your views here.
 
 
@@ -15,15 +15,13 @@ from .custompermissions import MyPermission
 class StudentViewSet(viewsets.ModelViewSet):
   queryset = Student.objects.all()
   serializer_class = StudentSerializer
-  authentication_classes = [SessionAuthentication]
+  authentication_classes = [JWTAuthentication]
   # permission_classes = [IsAuthenticated, AllowAny]
   # permission_classes = [IsAdminUser] # this is only accessible by the user who are staff "is staff true"
   # permission_classes = [IsAuthenticatedOrReadOnly]
   # permission_classes = [DjangoModelPermissions]
   # permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
-
-  # This is custome permission
-  permission_classes = [MyPermission]
+  permission_classes = [IsAuthenticated]
 
 
 
