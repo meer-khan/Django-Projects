@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     "ModelViewSet9",
     "BasicAuthenticationAndPermissions10",
     "SessionAuthentication11", 
-    "CustomPermission12"
+    "CustomPermission12", 
+    "JWTAuthentication13"
 ]
 
 MIDDLEWARE = [
