@@ -30,3 +30,11 @@ class StudentViewSet(viewsets.ModelViewSet):
 
 
 
+
+
+
+
+
+
+
+
