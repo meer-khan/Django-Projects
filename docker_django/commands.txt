@@ -1,0 +1,2 @@
+docker build --tag <name of image> . 
+docker run --publish 8000:8000 <name of image>
