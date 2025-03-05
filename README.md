@@ -15,6 +15,11 @@
 
 Welcome to the most exciting repository for Django enthusiasts! Here, we've gathered a treasure trove of Django knowledge and projects that will supercharge your web development skills.
 
+## Interview Questions: 
+https://github.com/Ujjawal-Anand/django-interview  
+https://github.com/PragatiVerma18/DRF-Interview-Prep  
+https://github.com/Devinterview-io/django-interview-questions  
+
 ## Project Highlights
 
 ### 1. **djangoCRUDOps**: Your Gateway to CRUD Awesomeness!
