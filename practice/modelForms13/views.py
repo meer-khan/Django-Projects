@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .forms import StudentRegistration
 from .models import User
+
 # Create your views here.
+
 
 def modelForms(request):
     if request.method == "POST":
@@ -15,11 +17,10 @@ def modelForms(request):
             print("Name is: ", fm.cleaned_data.get("name"))
             print("Email is: ", fm.cleaned_data["email"])
             print("Password is: ", fm.cleaned_data["password"])
-            obj = User(name = nm, email = em, password = ps)
+            obj = User(name=nm, email=em, password=ps)
             obj.save()
 
-        
     else:
         fm = StudentRegistration()
 
-    return render(request, "modelForms13/userregistration13.html", {"form":fm})
+    return render(request, "modelForms13/userregistration13.html", {"form": fm})

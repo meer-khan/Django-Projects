@@ -9,12 +9,10 @@ router = DefaultRouter()
 readonly_router = DefaultRouter()
 
 # Register StudentViewSet with Router
-router.register("studentapi", views.StudentViewSet, basename = 'student')
+router.register("studentapi", views.StudentViewSet, basename="student")
 
 urlpatterns = [
     path("", include(router.urls)),
-
     # To get a login button on browseable API
-    path("auth/", include("rest_framework.urls"))
-
+    path("auth/", include("rest_framework.urls")),
 ]

@@ -24,5 +24,7 @@ class Migration(migrations.Migration):
                 ),
             ],
         ),
-        migrations.DeleteModel(name="Prod",),
+        migrations.DeleteModel(
+            name="Prod",
+        ),
     ]

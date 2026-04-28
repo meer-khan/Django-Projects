@@ -8,7 +8,9 @@ class ProfileModelClass(admin.ModelAdmin):
     search_fields = ("name", "email", "city", "roll")
     list_filter = ("age", "city")
 
+
 admin.site.register(Profile, ProfileModelClass)
+
 
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):

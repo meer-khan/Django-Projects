@@ -2,5 +2,5 @@
 
 # Create your tests here.
 
-d = {"id":1, "name":"Khan"}
-print(d.get('id'))
+d = {"id": 1, "name": "Khan"}
+print(d.get("id"))

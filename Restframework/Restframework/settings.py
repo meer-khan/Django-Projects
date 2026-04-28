@@ -48,9 +48,9 @@ INSTALLED_APPS = [
     "ViewSet8",
     "ModelViewSet9",
     "BasicAuthenticationAndPermissions10",
-    "SessionAuthentication11", 
-    "CustomPermission12", 
-    "JWTAuthentication13"
+    "SessionAuthentication11",
+    "CustomPermission12",
+    "JWTAuthentication13",
 ]
 
 MIDDLEWARE = [
@@ -96,13 +96,13 @@ WSGI_APPLICATION = "Restframework.wsgi.application"
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DRF',
-        'USER': 'postgres',
-        'PASSWORD': 'Pakistan2212',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "DRF",
+        "USER": "postgres",
+        "PASSWORD": "Pakistan2212",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 

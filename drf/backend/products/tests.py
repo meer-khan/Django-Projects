@@ -1,9 +1,8 @@
-
 # Create your tests here.
 from email import header
-import pandas as pd 
+import pandas as pd
 
-# name = Hello 
+# name = Hello
 # file = pd.read_csv(rf'C:\Users\Hanzalah\Downloads\jan.csv\{name}' , header=None)
 
 # # print(file)
@@ -14,7 +13,7 @@ import pandas as pd
 
 nam = "Hello"
 
-str1 = rf'C:\Users\Hanzalah\Downloads\jan.csv\{nam}.zip'
-str2  = "OKgit " 
+str1 = rf"C:\Users\Hanzalah\Downloads\jan.csv\{nam}.zip"
+str2 = "OKgit "
 
 print(str1)
