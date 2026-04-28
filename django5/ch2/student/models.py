@@ -20,4 +20,4 @@ class Result(models.Model):
     marks = models.IntegerField()
 
     def __str__(self):
-        return f"{self.student.name} - {self.subject}"
+        return f"{self.student.name} - {self.student.age}"
