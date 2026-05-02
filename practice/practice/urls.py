@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from app1 import views as app1
 from app2 import views as app2
+
 # OR we can import direct function from the files
 
 urlpatterns = [
@@ -26,18 +27,16 @@ urlpatterns = [
     path("app1/", include("app1.urls")),
     path("app2/", include("app2.urls")),
     path("formloop/", include("looponformandhiddenfields.urls")),
-    path("formfield/",include("formfieldarguments.urls")),
-    path("postform/",include("postform.urls")),
+    path("formfield/", include("formfieldarguments.urls")),
+    path("postform/", include("postform.urls")),
     path("vf/", include("validatingform.urls")),
     path("redi/", include("redirecting.urls")),
-    path('10/',include("formfieldtypes10.urls")),
-    path('11/',include("cleaningValidatingFormData11.urls")),
-    path('12/',include("stylingFormErrors12.urls")),
+    path("10/", include("formfieldtypes10.urls")),
+    path("11/", include("cleaningValidatingFormData11.urls")),
+    path("12/", include("stylingFormErrors12.urls")),
     path("13/", include("modelForms13.urls")),
     path("14/", include("dynamicURL14.urls")),
     path("15/", include("customPathConverter15.urls")),
-
-
     # path("learnDJ/", app1.my_func),
     # path("myName/", app1.my_func2),
     # path("app2Hello", app2.app2_func)

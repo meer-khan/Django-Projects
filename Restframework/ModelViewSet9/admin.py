@@ -1,5 +1,6 @@
 from django.contrib import admin
 from serialization.models import Student
+
 # Register your models here.
 
 # @admin.register(Student)

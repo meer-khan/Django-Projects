@@ -1,12 +1,13 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import StudentRegistration
 from .models import User
+
 # Create your views here.
 def add_show(request):
-    if request.method == "POST": 
+    if request.method == "POST":
         fm = StudentRegistration(request.POST)
-        
-        if fm.is_valid(): 
+
+        if fm.is_valid():
             nm = fm.cleaned_data.get("name")
             em = fm.cleaned_data.get("email")
             pw = fm.cleaned_data["password"]
@@ -15,28 +16,27 @@ def add_show(request):
 
             fm.save()
 
-        # Showing blank form after User submits the data: 
+            # Showing blank form after User submits the data:
             fm = StudentRegistration()
-    else: 
+    else:
         fm = StudentRegistration()
     stud = User.objects.all()
 
-    return render(request, 'enroll/addandshow.html', {'form':fm, 'stu':stud})
+    return render(request, "enroll/addandshow.html", {"form": fm, "stu": stud})
 
 
+# We have two ways to save data into DB,
+# 1- we can save data through model forms .save() function
+# 2- we can save data through Model Object
 
-# We have two ways to save data into DB, 
-# 1- we can save data through model forms .save() function 
-# 2- we can save data through Model Object 
-
-# Above Code explains the 1st approach and below code is for 2nd approach 
+# Above Code explains the 1st approach and below code is for 2nd approach
 
 
 # def add_show(request):
-#     if request.method == "POST": 
+#     if request.method == "POST":
 #         fm = StudentRegistration(request.POST)
-        
-#         if fm.is_valid(): 
+
+#         if fm.is_valid():
 #             nm = fm.cleaned_data.get("name")
 #             em = fm.cleaned_data.get("email")
 #             pw = fm.cleaned_data["password"]
@@ -47,40 +47,35 @@ def add_show(request):
 #             obj = User(name= nm, email = em, password=pw)
 #             obj.save()
 
-#     else: 
+#     else:
 #         fm = StudentRegistration()
 
 #     return render(request, 'enroll/addandshow.html', {'form':fm})
 
 
-
-
 # Delete Function
 
 
-def delete_data(request,id):
-    if request.method == "POST": 
+def delete_data(request, id):
+    if request.method == "POST":
         record = User.objects.get(pk=id)
         record.delete()
 
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect("/")
 
 
-
-def update_data(request,id):
+def update_data(request, id):
     # if fm.is_valid():
     #     pass
-    if request.method == "POST": 
+    if request.method == "POST":
         record = User.objects.get(pk=id)
         fm = StudentRegistration(request.POST, instance=record)
         # record.delete()
         if fm.is_valid():
             fm.save()
 
-    else: 
+    else:
         record = User.objects.get(pk=id)
         fm = StudentRegistration(instance=record)
 
-        
-
-    return render(request, 'enroll/updatestudent.html', {"form":fm})
+    return render(request, "enroll/updatestudent.html", {"form": fm})

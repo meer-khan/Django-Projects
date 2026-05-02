@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "app1",
     "looponformandhiddenfields",
     "formfieldarguments",
-    "postform", 
+    "postform",
     "validatingform",
     "redirecting",
     "formfieldtypes10",
@@ -93,13 +93,13 @@ WSGI_APPLICATION = "practice.wsgi.application"
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'TestDB',
-        'USER': 'postgres',
-        'PASSWORD': 'Pakistan2212',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "TestDB",
+        "USER": "postgres",
+        "PASSWORD": "Pakistan2212",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 

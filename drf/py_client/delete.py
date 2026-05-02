@@ -1,4 +1,4 @@
-# import requests 
+# import requests
 
 # endpoint= "http://localhost:8080/api/products/10/delete/"
 
@@ -6,7 +6,7 @@
 # print(getResponse.status_code)
 
 
-import os 
+import os
 import pathlib
 
 

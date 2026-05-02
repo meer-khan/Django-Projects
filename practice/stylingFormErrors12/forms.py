@@ -1,8 +1,6 @@
-from django import forms 
+from django import forms
 import re
 from django.core import validators
-
-
 
 
 # def phone_num_starts_with_92(phno):
@@ -14,25 +12,28 @@ from django.core import validators
 #     if not phno.startswith("+92"):
 #         raise forms.ValidationError("Number should start from +92")
 
-    
 
 class StudentRegistration(forms.Form):
 
     # If Name field is empty than "Enter Your Name" error will pop up
-    name = forms.CharField(error_messages={"required":"Enter Your Name"}, min_length=5,max_length=50)
-    email = forms.EmailField(error_messages={"required":"Enter Your Email"})
-    password = forms.CharField(widget=forms.PasswordInput(),error_messages={"required":"Enter Your Password"})
-    # # We are creating this field to reenter password and makes sure, both password match by using 
+    name = forms.CharField(
+        error_messages={"required": "Enter Your Name"}, min_length=5, max_length=50
+    )
+    email = forms.EmailField(error_messages={"required": "Enter Your Email"})
+    password = forms.CharField(
+        widget=forms.PasswordInput(), error_messages={"required": "Enter Your Password"}
+    )
+    # # We are creating this field to reenter password and makes sure, both password match by using
     # # the clean() function, in clean function we write custom logic to check both passwords are same or not
     # repassword = forms.CharField(widget=forms.PasswordInput(), label="Confirm Password")
-    
-    # # * Writing Builtin validators: 
+
+    # # * Writing Builtin validators:
     # '''
     # CUSTOM VALIDATION FIELDS
     # '''
-    # fullName = forms.CharField(validators=[validators.MaxLengthValidator(20), 
+    # fullName = forms.CharField(validators=[validators.MaxLengthValidator(20),
     #                                        validators.MinLengthValidator(5),])
-    
+
     # pho_no = forms.CharField(validators=[phone_num_starts_with_92])
 
     # # def clean_name(self):
@@ -40,23 +41,23 @@ class StudentRegistration(forms.Form):
     # This function is used to evaluate/validate the name field
     # '''
     # #     valName= self.cleaned_data["name"]
-    # #     # OR we can also write it as 
+    # #     # OR we can also write it as
     # #     # valName = self.cleaned_data.get("name")
 
-    # #     if len(valName) < 4: 
+    # #     if len(valName) < 4:
     # #         raise forms.ValidationError("Enter more than 4 characters")
-        
+
     # #     # * Validatoin to check there is no special character in name using Regex
     # #     pattern = r'^[a-zA-Z0-9 ]+$'  # Regular expression pattern to allow only alphanumeric characters and spaces
 
     # #     # if not re.match(pattern, valName):
     # #     #     raise forms.ValidationError("Name can only contain letters, numbers, and spaces.")
-        
-    # #     # * We can also do this using isalnum() is alpha numeric function 
+
+    # #     # * We can also do this using isalnum() is alpha numeric function
     # #     for char in valName:
     # #         if not char.isalnum():
     # #             raise forms.ValidationError(f"Name can only contain letters, numbers, and spaces.you cannot add {char}")
-            
+
     #     # return valName
     # def clean(self):
     #     '''
@@ -74,15 +75,10 @@ class StudentRegistration(forms.Form):
     #     if revalpass != valpass:
     #         raise forms.ValidationError("Passwords does not match")
 
-    #     if len(valName) < 4 : 
+    #     if len(valName) < 4 :
     #         raise forms.ValidationError("Enter Name with more than 4 character and make sure there is no special character in it")
-        
+
     #     if len(valEmail)< 10 :
     #         raise forms.ValidationError("Email should not include less than 10 characters")
-        
 
-        
     #     # return valName
-
-
-

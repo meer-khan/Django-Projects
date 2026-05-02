@@ -21,19 +21,15 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("serialization.urls")),
     path("api/deserialization/", include("deserialization.urls")),
-    path("api3/",include("validations3.urls")),
+    path("api3/", include("validations3.urls")),
     path("api4/", include("ModelSerializer4.urls")),
     path("api5/", include("ApiViewCRUD5.urls")),
-    path('api6/',include("GenericAPIandMixin6.urls")),
-    path('api7/',include("ConcreteView7.urls")),
+    path("api6/", include("GenericAPIandMixin6.urls")),
+    path("api7/", include("ConcreteView7.urls")),
     path("api8/", include("ViewSet8.urls")),
     path("api9/", include("ModelViewSet9.urls")),
     path("api10/", include("BasicAuthenticationAndPermissions10.urls")),
     path("api11/", include("SessionAuthentication11.urls")),
     path("api12/", include("CustomPermission12.urls")),
-    path("api13/", include("JWTAuthentication13.urls"))
-
-    
-
-
+    path("api13/", include("JWTAuthentication13.urls")),
 ]
