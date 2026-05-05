@@ -11,10 +11,20 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+TWILIO_ACCOUNT_SID   = os.environ.get("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN    = os.environ.get("TWILIO_AUTH_TOKEN")
+TWILIO_WHATSAPP_FROM = os.environ.get("TWILIO_WHATSAPP_FROM")
+
+EMAIL_BACKEND        = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY     = os.environ.get("SENDGRID_API_KEY")
+DEFAULT_FROM_EMAIL   = os.environ.get("DEFAULT_FROM_EMAIL")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
