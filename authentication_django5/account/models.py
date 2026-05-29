@@ -43,7 +43,7 @@ class User(AbstractBaseUser):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-    objects = UserManager()  # attach your custom manager
+    objects: UserManager = UserManager()  # attach your custom manager
     USERNAME_FIELD = "email" # ← used to log in
 
     def __str__(self):
