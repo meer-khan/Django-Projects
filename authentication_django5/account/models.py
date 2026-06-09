@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -29,11 +29,12 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser): 
+class User(AbstractBaseUser, PermissionsMixin): 
     email = models.EmailField(unique=True, max_length=255)
     name = models.CharField(max_length=255, default="")
     phone_no = models.CharField(max_length=20, default="")
     city = models.CharField(max_length=255)
+    role = models.CharField(max_length=50, default="customer")
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -49,13 +50,13 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.email
     
-    def has_perm(self, perm, obj=None):
-        # Only superusers have all permissions
-        return self.is_superuser
+    # def has_perm(self, perm, obj=None):
+    #     # Only superusers have all permissions
+    #     return self.is_superuser
     
-    def has_module_perms(self, app_label):
-        # Only superusers have permissions to view the app `app_label`
-        return self.is_superuser
+    # def has_module_perms(self, app_label):
+    #     # Only superusers have permissions to view the app `app_label`
+    #     return self.is_superuser
     
 
     
