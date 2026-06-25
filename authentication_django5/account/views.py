@@ -135,6 +135,7 @@ def logout_user(request):
     if request.method != "POST":
         return JsonResponse({"error": "Method not allowed"}, status=405)
 
+    # session.flush() is used to delete the session of the user
     request.session.flush()
 
     return JsonResponse({"message": "Logout successful"}, status=200)
@@ -145,15 +146,10 @@ def profile(request):
     if request.method != "GET":
         return JsonResponse({"error": "Method not allowed"}, status=405)
 
-    user_id = request.session.get("user_id")
-
-    if not user_id:
+    if not request.user.is_authenticated:
         return JsonResponse({"error": "Not authenticated"}, status=401)
 
-    try:
-        user = User.objects.get(id=user_id)
-    except User.DoesNotExist:
-        return JsonResponse({"error": "User not found"}, status=404)
+    user = request.user
 
     return JsonResponse(
         {
@@ -161,7 +157,7 @@ def profile(request):
             "email": user.email,
             "name": user.name,
             "city": user.city,
-            "phone": user.phone,
+            "phone_no": user.phone_no,
             "is_customer": user.is_customer,
             "is_seller": user.is_seller,
             "created_at": user.created_at.isoformat(),
